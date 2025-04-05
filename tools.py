@@ -2,7 +2,26 @@ import requests
 import json
 import os
 from time import sleep
+import subprocess
+import sys
+from colorama import Fore, Back, Style, init
 
+# Renkli yazının animasyonlu olarak ekrana yazdırılması için başlatma
+init(autoreset=True)
+
+def install_requirements():
+    """Gerekli kütüphaneleri kontrol edip, yükler."""
+    try:
+        import requests
+        import json
+        import os
+        import time
+        from colorama import Fore
+    except ImportError:
+        print(Fore.RED + "Gerekli kütüphaneler eksik, yükleniyor...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", 'requests', 'colorama'])
+        print(Fore.GREEN + "Kütüphaneler başarıyla yüklendi!\n")
+    
 def download_file(url, filename):
     """GitHub'dan dosya indirir ve kaydeder."""
     response = requests.get(url)
@@ -38,8 +57,29 @@ def run_tool(tool_file):
         code = file.read()
     exec(code, globals())
 
+def print_animated_text():
+    text = """
+███████╗██████╗░███████╗███╗░░██╗
+██╔════╝██╔══██╗██╔════╝████╗░██║
+█████╗░░██████╔╝█████╗░░██╔██╗██║
+██╔══╝░░██╔══██╗██╔══╝░░██║╚████║
+███████╗██║░░██║███████╗██║░╚███║
+╚══════╝╚═╝░░╚═╝╚══════╝╚═╝░░╚══╝
+    """
+    
+    # Renkli yazının her bir satırını animasyonlu olarak yazdırmak
+    for i in range(len(text)):
+        # Animasyonlu şekilde yazdırma
+        print(Fore.GREEN + text[:i+1], end="\r")
+        sleep(0.05)
+
+    print("\n")  # Sonrasında yeni bir satır açma
+
 def main():
-    """Ana fonksiyon: Menü ve araçları yönetir."""
+    install_requirements()  # Gerekli kütüphaneleri yükle
+    
+    print_animated_text()  # Animasyonlu yazıyı ekrana yazdır
+    
     menu = load_menu()
 
     while True:
