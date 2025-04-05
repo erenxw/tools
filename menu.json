@@ -1,8 +1,8 @@
 {
   "menu": [
     {
-      "name": "Username Checker",
-      "file": "username_checker.py"
+      "name": "website checker",
+      "file": "website.py"
     },
     {
       "name": "Instagram Info Tool",
