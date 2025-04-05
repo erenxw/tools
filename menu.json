@@ -5,8 +5,8 @@
       "file": "website.py"
     },
     {
-      "name": "Instagram Info Tool",
-      "file": "instagram_info.py"
+      "name": "Tiktok canlı yayın kazanç kontrol",
+      "file": "tiktok.py"
     }
   ]
 }
