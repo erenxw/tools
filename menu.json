@@ -1,0 +1,12 @@
+{
+  "menu": [
+    {
+      "name": "Username Checker",
+      "file": "username_checker.py"
+    },
+    {
+      "name": "Instagram Info Tool",
+      "file": "instagram_info.py"
+    }
+  ]
+}
