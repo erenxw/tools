@@ -5,6 +5,10 @@
       "file": "website.py"
     },
     {
+      "name": "Sms Bomber",
+      "file": "sms.py"
+    },
+    {
       "name": "Güncelleme Kontrol",
       "file": "version.py"
     },
