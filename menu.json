@@ -9,6 +9,10 @@
       "file": "sms.py"
     },
     {
+      "name": "Sosyal Medya Tarayıcı",
+      "file": "username_scanner.py"
+    },
+    {
       "name": "Güncelleme Kontrol",
       "file": "version.py"
     },
