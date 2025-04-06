@@ -38,6 +38,44 @@ def download_file(url, filename):
     except requests.exceptions.RequestException as e:
         print(Fore.RED + f"Dosya indirilirken hata oluştu: {e}")
 
+def check_for_update():
+    """GitHub'dan en son sürüm bilgisini kontrol eder."""
+    try:
+        response = requests.get("https://raw.githubusercontent.com/erenxw/tools/main/version.txt")
+        if response.status_code == 200:
+            latest_version = response.text.strip()
+            current_version = "1.0"  # Mevcut sürüm numarasını buraya girin
+
+            if latest_version != current_version:
+                return latest_version
+            else:
+                return None
+        else:
+            print(Fore.RED + "Sürüm kontrolü yapılamadı.")
+            return None
+    except requests.exceptions.RequestException as e:
+        print(Fore.RED + f"Sürüm kontrolü yapılırken hata oluştu: {e}")
+        return None
+
+def update_tools():
+    """Yeni sürüm varsa, güncellemeyi yapar."""
+    print(Fore.YELLOW + "Yeni bir güncelleme mevcut! Güncellemek istiyor musunuz? (E/H)")
+    choice = input().strip().lower()
+
+    if choice == "e":
+        print("Güncelleniyor...")
+        download_file("https://raw.githubusercontent.com/erenxw/tools/main/tools.py", "tools.py")
+        print(Fore.GREEN + "Güncelleme başarılı! Yeniden başlatılıyor...")
+        try:
+            # Yeniden başlatma işlemi
+            os.execl(sys.executable, sys.executable, *sys.argv)
+        except Exception as e:
+            print(Fore.RED + f"Yeniden başlatırken hata oluştu: {e}")
+            sys.exit(1)  # Hata ile çıkış yap
+
+    else:
+        print("Güncelleme işlemi iptal edildi.")
+
 def load_menu():
     """menu.json dosyasını GitHub'dan çeker ve menüyü döndürür."""
     menu_url = "https://raw.githubusercontent.com/erenxw/tools/main/menu.json"
@@ -84,6 +122,10 @@ def main():
     print_animated_text()  # Animasyonlu yazıyı ekrana yazdır  
 
     menu = load_menu()  
+
+    update_version = check_for_update()
+    if update_version:
+        update_tools()  # Eğer yeni sürüm varsa, güncelleme yap
 
     while True:  
         show_menu(menu)  
