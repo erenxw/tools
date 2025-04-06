@@ -1,12 +1,16 @@
 {
   "menu": [
     {
-      "name": "website checker",
+      "name": "Website Checker",
       "file": "website.py"
     },
     {
-      "name": "Tiktok canlı yayın kazanç kontrol",
-      "file": "tiktok.py"
+      "name": "Güncelleme Kontrol",
+      "file": "version.py"
+    },
+    {
+      "name": "Instagram Checker",
+      "file": "insta.py"
     }
   ]
 }
