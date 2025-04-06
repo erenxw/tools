@@ -14,6 +14,11 @@ if response.status_code == 200:
     if local_version != remote_version:
         print("Yeni bir güncelleme mevcut. Lütfen en güncel kodu indirip çalıştırın:")
         print("https://github.com/erenxw/tools/blob/main/version.txt")
+        
+        # GitHub'daki yeni sürümü version.txt ile güncelle
+        with open("version.txt", "w") as file:
+            file.write(remote_version)
+        print("Yerel version.txt dosyası güncellendi.")
     else:
         print("Kodunuz güncel.")
 else:
