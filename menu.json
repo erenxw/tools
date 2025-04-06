@@ -11,6 +11,10 @@
     {
       "name": "Instagram Checker",
       "file": "insta.py"
-    }
+    },
+    {
+      "name": "BluTv Checker",
+      "file": "blutv.py"
+    },
   ]
 }
