@@ -4,7 +4,15 @@ import os
 import json
 from cfonts import render
 
+# Renk kodları
+KIRMIZI = '\033[1;31m'
+MAVİ = '\033[1;36m'
+YESIL = '\033[1;32m'
+SIFIRLA = '\033[0m'
 
+# Başlık
+zenit = render('BLU-TV', colors=['white', 'blue'], align='center')
+print(zenit)
 
 # Kullanıcıdan dosya ismini alma
 dosya_ismi = input("Lütfen dosya ismini girin: ")
