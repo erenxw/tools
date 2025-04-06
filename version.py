@@ -1,8 +1,12 @@
 import requests
 
 # Yerel version.txt dosyasını oku
-with open("version.txt", "r") as file:
-    local_version = file.read().strip()
+try:
+    with open("version.txt", "r") as file:
+        local_version = file.read().strip()
+except FileNotFoundError:
+    print("Yerel version.txt dosyası bulunamadı.")
+    local_version = None
 
 # GitHub'daki version.txt dosyasını al
 url = "https://raw.githubusercontent.com/erenxw/tools/main/version.txt"
@@ -13,12 +17,15 @@ if response.status_code == 200:
 
     if local_version != remote_version:
         print("Yeni bir güncelleme mevcut. Lütfen en güncel kodu indirip çalıştırın:")
-        print("https://github.com/erenxw/tools/blob/main/version.txt")
+        print("https://github.com/erenxw/tools/blob/main/tools.py")
         
         # GitHub'daki yeni sürümü version.txt ile güncelle
-        with open("version.txt", "w") as file:
-            file.write(remote_version)
-        print("Yerel version.txt dosyası güncellendi.")
+        try:
+            with open("version.txt", "w") as file:
+                file.write(remote_version)
+            print("Yerel version.txt dosyası güncellendi.")
+        except Exception as e:
+            print(f"version.txt dosyası güncellenemedi: {e}")
     else:
         print("Kodunuz güncel.")
 else:
