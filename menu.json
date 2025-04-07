@@ -8,6 +8,10 @@
       "name": "Sms Bomber",
       "file": "sms.py"
     },
+  {
+      "name": "Justpaste random link tarayıcı",
+      "file": "justpaste.py"
+    },
     {
       "name": "Sosyal Medya Tarayıcı",
       "file": "username_scanner.py"
