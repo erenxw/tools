@@ -25,6 +25,10 @@
       "file": "proxy.py"
     },
     {
+      "name": "Exxen Checker",
+      "file": "exxen.py"
+    },
+    {
       "name": "BluTv Checker",
       "file": "blutv.py"
     }
