@@ -13,6 +13,10 @@
       "file": "username_scanner.py"
     },
     {
+      "name": "Müzik indirme",
+      "file": "music.py"
+    },
+    {
       "name": "Güncelleme Kontrol",
       "file": "version.py"
     },
