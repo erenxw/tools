@@ -4,11 +4,15 @@
       "name": "Website Checker",
       "file": "website.py"
     },
+        {
+      "name": "Website İndirici",
+      "file": "website-indirici.py"
+    },
     {
       "name": "Sms Bomber",
       "file": "sms.py"
     },
-  {
+    {
       "name": "Justpaste random link tarayıcı",
       "file": "justpaste.py"
     },
